@@ -1,28 +1,28 @@
-const express = require("express");
-const app = express();
+const express = require('express')
+const app = express()
 
-const port = 3000;
+const port = 3000
 
-const exphbs = require("express-handlebars");
-const restaurantList = require("./restaurant.json");
+const exphbs = require('express-handlebars')
+const restaurantList = require('./restaurant.json')
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
 
-app.use(express.static("public"));
+app.use(express.static('public'))
 
-app.get("/", (req, res) => {
-  res.render("index", { restaurant: restaurantList.results });
-});
+app.get('/', (req, res) => {
+  res.render('index', { restaurant: restaurantList.results })
+})
 
-app.get("/restaurants/:id", (req, res) => {
+app.get('/restaurants/:id', (req, res) => {
   const indexRestaurant = restaurantList.results.find(
     (restaurant) => restaurant.id.toString() === req.params.id
-  );
-  res.render("show", { restaurant: indexRestaurant });
-});
+  )
+  res.render('show', { restaurant: indexRestaurant })
+})
 
-app.get("/search", (req, res) => {
+app.get('/search', (req, res) => {
   const filterRestaurant = restaurantList.results.filter(
     (restaurant) =>
       restaurant.name
@@ -32,13 +32,13 @@ app.get("/search", (req, res) => {
         .toLowerCase()
         .includes(req.query.keyword.trim().toLowerCase()) ||
       restaurant.category.includes(req.query.keyword.trim())
-  );
-  res.render("index", {
+  )
+  res.render('index', {
     restaurant: filterRestaurant,
-    keyword: req.query.keyword,
-  });
-});
+    keyword: req.query.keyword
+  })
+})
 
 app.listen(port, () => {
-  console.log(`express is running on http://localhost:${port}`);
-});
+  console.log(`express is running on http://localhost:${port}`)
+})
