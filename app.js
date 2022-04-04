@@ -4,7 +4,7 @@ const app = express()
 const port = 3000
 
 const exphbs = require('express-handlebars')
-const restaurantList = require('./restaurant.json')
+const restaurantList = require('./restaurant.json').results
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -12,30 +12,28 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.render('index', { restaurant: restaurantList.results })
+  res.render('index', { restaurantList })
 })
 
 app.get('/restaurants/:id', (req, res) => {
-  const indexRestaurant = restaurantList.results.find(
-    (restaurant) => restaurant.id.toString() === req.params.id
+  const indexRestaurant = restaurantList.find(
+    restaurant => restaurant.id.toString() === req.params.id
   )
-  res.render('show', { restaurant: indexRestaurant })
+  res.render('show', { indexRestaurant })
 })
 
 app.get('/search', (req, res) => {
-  const filterRestaurant = restaurantList.results.filter(
-    (restaurant) =>
-      restaurant.name
-        .toLowerCase()
-        .includes(req.query.keyword.trim().toLowerCase()) ||
-      restaurant.name_en
-        .toLowerCase()
-        .includes(req.query.keyword.trim().toLowerCase()) ||
+  const keyword = req.query.keyword.trim().toLowerCase()
+
+  const filterRestaurant = restaurantList.filter(
+    restaurant =>
+      restaurant.name.toLowerCase().includes(keyword) ||
+      restaurant.name_en.toLowerCase().includes(keyword) ||
       restaurant.category.includes(req.query.keyword.trim())
   )
   res.render('index', {
-    restaurant: filterRestaurant,
-    keyword: req.query.keyword
+    restaurantList: filterRestaurant,
+    keyword
   })
 })
 
