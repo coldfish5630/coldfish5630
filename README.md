@@ -48,9 +48,9 @@ mongodb connected
 # 使用工具
 Node.js 16.13.0  
 Express 4.16.4  
-Express-Handlebars 3.0.0 
-mongoose 5.13.14
-dotenv 16.0.0
-body-parser 1.20.0 
+Express-Handlebars 3.0.0  
+mongoose 5.13.14  
+dotenv 16.0.0  
+body-parser 1.20.0  
 Bootstrap 4.3.1  
 Font-awesome
