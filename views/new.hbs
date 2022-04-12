@@ -1,7 +1,7 @@
 <div class="container mt-3 mb-5">
     <div class="row">
         <div class="col-md-10 col-10 mx-auto">
-            <form action="/restaurants" method="post">
+            <form action="/restaurants" method="post" id="form">
                 <div class="mb-3">
                     <label for="name" class="form-label">餐廳名稱：</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="請輸入餐廳名稱..." required>
@@ -51,7 +51,7 @@
                     <input type="text" class="form-control" id="image" name="image" placeholder="http://example.com/restaurant.jpg" required>
                 </div>
                 <div class="col-4 d-flex justify-content-around m-auto">
-                    <button type="submit" class="btn btn-success">新增</button>
+                    <button type="submit" class="btn btn-success" id="submitButton">新增</button>
                     <a href="/" class="btn btn-secondary">返回</a>
                 </div>
             </form>
