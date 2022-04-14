@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const Restaurant = require('./models/restaurant')
+const methodOverride = require('method-override')
 require('dotenv').config()
 
 const app = express()
@@ -27,6 +28,7 @@ const exphbs = require('express-handlebars')
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 app.use(express.static('public'))
 
@@ -37,6 +39,10 @@ app.get('/', (req, res) => {
       res.render('index', { restaurant })
     })
     .catch(error => console.error(error))
+})
+
+app.get('/restaurant/new', (req, res) => {
+  res.render('new')
 })
 
 app.get('/restaurants/:id', (req, res) => {
@@ -65,33 +71,8 @@ app.get('/search', (req, res) => {
     .catch(error => console.error(error))
 })
 
-app.get('/restaurant/new', (req, res) => {
-  res.render('new')
-})
-
 app.post('/restaurants', (req, res) => {
-  const {
-    name,
-    name_en,
-    category,
-    location,
-    google_map,
-    phone,
-    rating,
-    description,
-    image
-  } = req.body
-  return Restaurant.create({
-    name,
-    name_en,
-    category,
-    location,
-    google_map,
-    phone,
-    rating,
-    description,
-    image
-  })
+  return Restaurant.create(req.body)
     .then(res.redirect('/'))
     .catch(error => console.error(error))
 })
@@ -106,7 +87,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.error(error))
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const {
     name,
@@ -136,7 +117,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.error(error))
 })
 
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
