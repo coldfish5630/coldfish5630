@@ -1,18 +1,18 @@
 <div class="container mt-3 mb-5">
     <div class="row">
         <div class="col-md-10 col-10 mx-auto">
-            <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="post" id="form">
+            <form action="/restaurants{{#if restaurant}}/{{restaurant._id}}?_method=PUT{{/if}}" method="post" id="form">
                 <div class="mb-3">
                     <label for="name" class="form-label">餐廳名稱：</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="請輸入餐廳名稱..." value="{{restaurant.name}}" required>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="請輸入餐廳名稱..." value="{{#if restaurant}}{{restaurant.name}}{{/if}}" required>
                 </div>
                 <div class="mb-3">
                     <label for="name_en" class="form-label">餐廳英文名稱：</label>
-                    <input type="text" class="form-control" id="name_en" name="name_en" placeholder="English Name..." value="{{restaurant.name_en}}">
+                    <input type="text" class="form-control" id="name_en" name="name_en" placeholder="English Name..." value="{{#if restaurant}}{{restaurant.name_en}}{{/if}}">
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">餐廳種類：</label>
-                    <input list="categoryOptions" class="form-control" id="category" name="category" placeholder="請輸入餐廳類型..." value="{{restaurant.category}}" required>
+                    <input list="categoryOptions" class="form-control" id="category" name="category" placeholder="請輸入餐廳類型..." value="{{#if restaurant}}{{restaurant.category}}{{/if}}" required>
                     <datalist id="categoryOptions">
                         <option value="中東料理">
                         <option value="美式">
@@ -27,32 +27,32 @@
                 </div>
                 <div class="mb-3">
                     <label for="location" class="form-label">地址：</label>
-                    <input type="text" class="form-control" id="location" name="location" placeholder="請輸入地址..." value="{{restaurant.location}}" required>
+                    <input type="text" class="form-control" id="location" name="location" placeholder="請輸入地址..." value="{{#if restaurant}}{{restaurant.location}}{{/if}}" required>
                 </div>
                 <div class="mb-3">
                     <label for="google_map" class="form-label">Google地圖連結：</label>
-                    <input type="text" class="form-control" id="google_map" name="google_map" placeholder="https://goo.gl/maps/..." value="{{restaurant.google_map}}" required>
+                    <input type="text" class="form-control" id="google_map" name="google_map" placeholder="https://goo.gl/maps/..." value="{{#if restaurant}}{{restaurant.google_map}}{{/if}}" required>
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">餐廳電話：</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="02 8195 8151" value="{{restaurant.phone}}" required>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="02 8195 8151" value="{{#if restaurant}}{{restaurant.phone}}{{/if}}" required>
                 </div>
                 <div class="mb-3">
                     <label for="rating" class="form-label">餐廳評分：</label>
-                    <input type="number" class="form-control" id="rating" name="rating" aria-describedby="ratingHelp" placeholder="請輸入評分..." min="0.0" max="5.0" step="0.1" value="{{restaurant.rating}}" required>
+                    <input type="number" class="form-control" id="rating" name="rating" aria-describedby="ratingHelp" placeholder="請輸入評分..." min="0.0" max="5.0" step="0.1" value="{{#if restaurant}}{{restaurant.rating}}{{/if}}" required>
                     <div id="ratingHelp" class="form-text">請輸入介於0.0到5.0的數字</div>
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">餐廳介紹：</label>
-                    <textarea class="form-control" id="description" name="description" placeholder="這是一間販售...的餐廳" required>{{restaurant.description}}</textarea>
+                    <textarea class="form-control" id="description" name="description" placeholder="這是一間販售...的餐廳" required>{{#if restaurant}}{{restaurant.description}}{{/if}}</textarea>
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">餐廳照片：</label>
-                    <input type="text" class="form-control" id="image" name="image" placeholder="http://example.com/restaurant.jpg" value="{{restaurant.image}}" required>
+                    <input type="text" class="form-control" id="image" name="image" placeholder="http://example.com/restaurant.jpg" value="{{#if restaurant}}{{restaurant.image}}{{/if}}" required>
                 </div>
                 <div class="col-4 d-flex justify-content-around m-auto">
-                    <button type="submit" class="btn btn-success" id="submitButton">確認修改</button>
-                    <a href="/" class="btn btn-secondary">取消</a>
+                    <button type="submit" class="btn btn-success" id="submitButton">{{#if restaurant}}確認修改{{else}}新增{{/if}}</button>
+                    <a href="/" class="btn btn-secondary">{{#if restaurant}}取消{{else}}返回{{/if}}</a>
                 </div>
             </form>
         </div>

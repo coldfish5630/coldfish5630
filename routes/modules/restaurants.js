@@ -4,7 +4,7 @@ const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
 router.get('/new', (req, res) => {
-  res.render('new')
+  res.render('edit')
 })
 
 router.get('/search', (req, res) => {
@@ -19,6 +19,19 @@ router.get('/search', (req, res) => {
     .lean()
     .then(restaurant => {
       res.render('index', { restaurant, keyword })
+    })
+    .catch(error => console.error(error))
+})
+
+router.get('/sort:type', (req, res) => {
+  const sortType = req.params.type.split(':')
+  const sort = sortType[1] === 'asc' ? sortType[0] : '-' + sortType[0]
+  const selected = req.query.type
+  Restaurant.find()
+    .lean()
+    .sort(sort)
+    .then(restaurant => {
+      res.render('index', { restaurant, selected })
     })
     .catch(error => console.error(error))
 })
