@@ -8,6 +8,7 @@
 3.點擊詳細資訊內的地址連結可以開啟Google Map  
 4.清單可依照名稱或種類進行搜尋  
 5.使用者可以對餐廳資料進行新增、修改、刪除
+6.使用者可以排序餐廳順序
 # 開始使用
 1.請確認已安裝Node.js及npm  
 
@@ -52,5 +53,6 @@ Express-Handlebars 3.0.0
 mongoose 5.13.14  
 dotenv 16.0.0  
 body-parser 1.20.0  
+method-override 3.0.0
 Bootstrap 4.3.1  
 Font-awesome
