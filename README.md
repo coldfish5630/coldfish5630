@@ -24,7 +24,7 @@ git clone https://github.com/coldfish5630/restaurant.git
 npm install
 ```
 
-4.在/restaurant新增.env，並設定環境變數MongoDB_URI
+4.在/restaurant新增.env，並設定環境變數MONGODB_URI
 
 5.新增種子資料，看到done表示新增完成
 
