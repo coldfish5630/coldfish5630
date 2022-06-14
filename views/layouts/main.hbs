@@ -17,9 +17,14 @@
                 <div class="container">
                     <a class="navbar-brand" href="/">
                         <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png" width="30" height="30" class="d-inline-block align-top" alt="好。吃">
-                        我的餐廳清單
+                        {{#if isAuthenticated}}{{user.name}}{{else}}我{{/if}}的餐廳清單
                     </a>
+                    {{#if isAuthenticated}}
                     <a href="/restaurants/new" class="btn btn-outline-warning">Add New Restaurant</a>
+                    <a href="/users/logout" class="btn btn-outline-info">Logout</a>
+                    {{else}}
+                    <a href="/users/login" class="btn btn-outline-info">Login</a>
+                    {{/if}}
                 </div>
             </nav>
         <div class="banner"></div>
