@@ -20,8 +20,9 @@ router.get('/logout', (req, res) => {
     if (err) {
       return next(err)
     }
+    req.flash('success_msg', '你已成功登出')
+    res.redirect('/users/login')
   })
-  res.redirect('/users/login')
 })
 
 router.get('/register', (req, res) => {
@@ -33,11 +34,11 @@ router.post('/register', (req, res) => {
   const errors = []
 
   if (!name || !email || !password || !confirmPassword) {
-    errors.push({ message: 所有欄位都是必填 })
+    errors.push({ message: '所有欄位都是必填' })
   }
 
   if (password !== confirmPassword) {
-    errors.push({ message: 密碼與確認密碼不相符 })
+    errors.push({ message: '密碼與確認密碼不相符' })
   }
   if (errors.length) {
     return res.render('register', {
@@ -51,7 +52,7 @@ router.post('/register', (req, res) => {
   User.findOne({ email })
     .then(user => {
       if (user) {
-        errors.push({ message: Email已被註冊 })
+        errors.push({ message: 'Email已被註冊' })
         res.render('register', {
           errors,
           name,
