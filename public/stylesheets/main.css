@@ -34,6 +34,10 @@ header {
   .search-bar .search-bar-inner h4 {
     color: #9b4b4b;
   }
+
+  .user-list {
+    margin-top: -150px;
+  }
   
   .form-control::placeholder {
     color: #aaaaaa;

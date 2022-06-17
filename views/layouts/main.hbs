@@ -20,8 +20,10 @@
                         {{#if isAuthenticated}}{{user.name}}{{else}}我{{/if}}的餐廳清單
                     </a>
                     {{#if isAuthenticated}}
+                    <div class="btn-group" role="group">
                     <a href="/restaurants/new" class="btn btn-outline-warning">Add New Restaurant</a>
                     <a href="/users/logout" class="btn btn-outline-info">Logout</a>
+                    </div>
                     {{else}}
                     <a href="/users/login" class="btn btn-outline-info">Login</a>
                     {{/if}}
