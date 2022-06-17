@@ -3,7 +3,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const express = require('express')
 const session = require('express-session')
-const Restaurant = require('./models/restaurant')
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
 const routes = require('./routes')
@@ -27,6 +26,7 @@ app.use(
 )
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+app.use(express.static('public'))
 usePassport(app)
 app.use(flash())
 app.use((req, res, next) => {
@@ -37,8 +37,6 @@ app.use((req, res, next) => {
   next()
 })
 app.use(routes)
-
-app.use(express.static('public'))
 
 app.listen(port, () => {
   console.log(`express is running on http://localhost:${port}`)
