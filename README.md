@@ -3,12 +3,13 @@
 # 介紹
 紀錄一份餐廳清單，可以瀏覽、新增、修改、刪除餐廳清單、查閱餐廳詳細資訊、連結Google Map。
 # 功能
-1.查閱所有已登錄餐廳  
-2.點擊餐廳以檢視餐廳詳細資訊  
-3.點擊詳細資訊內的地址連結可以開啟Google Map  
-4.清單可依照名稱或種類進行搜尋  
-5.使用者可以對餐廳資料進行新增、修改、刪除
-6.使用者可以排序餐廳順序
+1.使用者可以註冊帳號  
+2.使用者登入後可以查閱自己編輯的餐廳資訊    
+3.點擊餐廳以檢視餐廳詳細資訊  
+4.點擊詳細資訊內的地址連結可以開啟Google Map  
+5.清單可依照名稱或種類進行搜尋  
+6.使用者可以對餐廳資料進行新增、修改、刪除  
+7.使用者可以排序餐廳順序  
 # 開始使用
 1.請確認已安裝Node.js及npm  
 
@@ -24,7 +25,7 @@ git clone https://github.com/coldfish5630/restaurant.git
 npm install
 ```
 
-4.在/restaurant新增.env，並設定環境變數MONGODB_URI
+4.在/restaurant新增.env，並參考.env.example設定環境變數
 
 5.新增種子資料，看到done表示新增完成
 
@@ -47,12 +48,9 @@ mongodb connected
 
 8.若要關閉程式請使用ctrl + c
 # 使用工具
-Node.js 16.13.0  
-Express 4.16.4  
-Express-Handlebars 3.0.0  
-mongoose 5.13.14  
-dotenv 16.0.0  
-body-parser 1.20.0  
-method-override 3.0.0
-Bootstrap 4.3.1  
-Font-awesome
+Node.js  
+Express  
+Express-Handlebars  
+mongoose  
+passport  
+bcryptjs  
