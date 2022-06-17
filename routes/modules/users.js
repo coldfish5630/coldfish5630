@@ -53,7 +53,7 @@ router.post('/register', (req, res) => {
     .then(user => {
       if (user) {
         errors.push({ message: 'Email已被註冊' })
-        res.render('register', {
+        return res.render('register', {
           errors,
           name,
           email,
