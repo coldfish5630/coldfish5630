@@ -39,7 +39,7 @@
         
           <div class="card p-0 col-sm-3 mx-3 mb-3">
             <a href="/restaurants/{{this._id}}" class="text-secondary">
-            <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
+            <img class="card-img-top" src="{{this.image}}" onerror="this.onerror=null;this.src='/pic/NoPicture.jpg';" alt="{{this.name}}">
             </a>
             <div class="card-body">
               <h6 class="card-title mb-1">{{this.name}}</h6>

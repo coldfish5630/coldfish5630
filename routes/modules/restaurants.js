@@ -46,14 +46,17 @@ router.get('/sort:type', (req, res) => {
 router.get('/:id', (req, res) => {
   const _id = req.params.id
   const userId = req.user._id
-  if (_id.match(/^[0-9a-fA-F]{24}$/)) {
-    return Restaurant.findOne({ _id, userId })
-      .lean()
-      .then(restaurant => {
-        res.render('show', { restaurant })
-      })
-      .catch(error => console.error(error))
+  if (!_id.match(/^[0-9a-fA-F]{24}$/)) {
+    return res.sendFile('/pic/NoPicture.jpg', {
+      root: './public'
+    })
   }
+  return Restaurant.findOne({ _id, userId })
+    .lean()
+    .then(restaurant => {
+      res.render('show', { restaurant })
+    })
+    .catch(error => console.error(error))
 })
 
 router.post('/', (req, res) => {
